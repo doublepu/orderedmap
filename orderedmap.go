@@ -72,6 +72,10 @@ func (me *OrderedMap[K, V]) Reset() {
 	me.l = list.New()
 }
 
+func (me *OrderedMap[K, V]) Len() int {
+	return len(me.m)
+}
+
 func (me *OrderedMap[K, V]) MarshalJSON() ([]byte, error) {
 	kvs := me.List()
 	l := len(kvs)

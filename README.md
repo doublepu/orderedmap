@@ -1,5 +1,5 @@
 # orderedmap
-ordered map  in golang generics way, suprrot json.Unmarsal, json.Marshal
+ordered map in golang generics way, support json.Unmarsal, json.Marshal
 
 # example
 ```
