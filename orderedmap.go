@@ -60,6 +60,46 @@ func (me *OrderedMap[K, V]) Get(k K) (v V, ok bool) {
 	return v, false
 }
 
+func (me *OrderedMap[K, V]) Front() (kv[K, V], bool) {
+	elem := me.l.Front()
+	if elem == nil {
+		return kv[K, V]{}, false
+	}
+	return elem.Value.(kv[K, V]), true
+}
+
+func (me *OrderedMap[K, V]) Back() (kv[K, V], bool) {
+	elem := me.l.Back()
+	if elem == nil {
+		return kv[K, V]{}, false
+	}
+	return elem.Value.(kv[K, V]), true
+}
+
+func (me *OrderedMap[K, V]) Prev(k K) (kv[K, V], bool) {
+	elem, ok := me.m[k]
+	if !ok {
+		return kv[K, V]{}, false
+	}
+	elem = elem.Prev()
+	if elem == nil {
+		return kv[K, V]{}, false
+	}
+	return elem.Value.(kv[K, V]), true
+}
+
+func (me *OrderedMap[K, V]) Next(k K) (kv[K, V], bool) {
+	elem, ok := me.m[k]
+	if !ok {
+		return kv[K, V]{}, false
+	}
+	elem = elem.Next()
+	if elem == nil {
+		return kv[K, V]{}, false
+	}
+	return elem.Value.(kv[K, V]), true
+}
+
 func (me *OrderedMap[K, V]) Delete(k K) {
 	if e, ok := me.m[k]; ok {
 		delete(me.m, k)
